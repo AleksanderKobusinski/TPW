@@ -1,0 +1,95 @@
+﻿<Window x:Class="View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        Title="Bouncing Balls" Height="580" Width="450">
+
+    <Grid Background="#FFCECECE">
+
+        <Button Content="START"
+                HorizontalAlignment="Left"
+                Margin="65,472,0,0"
+                VerticalAlignment="Top"
+                Width="100"
+                Height="40"
+                Command="{Binding Start}" FontFamily="Corbel" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Background="#FF8AE632">
+        </Button>
+
+        <Button Content="STOP"
+                HorizontalAlignment="Left"
+                Margin="285,472,0,0"
+                VerticalAlignment="Top"
+                Width="100"
+                Height="40"
+                Command="{Binding Stop}" FontWeight="Bold" FontFamily="Corbel" FontSize="16" Background="#FFFF4A4A"/>
+
+        <TextBlock HorizontalAlignment="Left" 
+                   Height="25" Margin="65,432,0,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   Width="160" 
+                   RenderTransformOrigin="0.5,0.5" 
+                   FontFamily="Corbel" 
+                   FontSize="18" 
+                   FontWeight="Bold">
+            <Run Language="pl-pl" Text="Podaj liczbę kulek"/>
+        </TextBlock>
+
+        <TextBox 
+                HorizontalAlignment="Left"
+                Margin="285,432,0,0"
+                TextWrapping="Wrap"
+                VerticalAlignment="Top"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Width="100"
+                Text="{Binding Count}"
+                Height="25" 
+                TextChanged="ChangedTextBox" 
+                RenderTransformOrigin="0.7,-0.319" 
+                FontSize="16" 
+                BorderBrush="Gray"/>
+
+        <Border BorderThickness="1"
+                BorderBrush="Gray"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Width="400"
+                Height="400" Margin="0,20,0,0">
+            <ItemsControl x:Name="itemss" ItemsSource="{Binding Ball}" Margin="0.5,0,1,0" VerticalAlignment="Center" Height="400">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas x:Name="BallSpace"
+                                Background="white"
+                                Height="400"
+                                Grid.Column="1" Margin="0,0,0,0"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="{x:Type ContentPresenter}">
+                        <Setter Property="Canvas.Left" Value="{Binding PosX}" />
+                        <Setter Property="Canvas.Top" Value="{Binding PosY}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Path Fill="BlueViolet">
+                            <Path.Data>
+                                <EllipseGeometry 
+                                    RadiusX="{Binding Radius}" 
+                                    RadiusY="{Binding Radius}" />
+                            </Path.Data>
+                        </Path>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+    </Grid>
+
+
+</Window>
