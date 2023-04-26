@@ -1,18 +1,18 @@
-﻿using Model;
+﻿using Data;
+using Logic;
 using System.Collections.ObjectModel;
 
-namespace ViewModel
+namespace Model
 {
-    public class SimulationViewModel
+    public class ModelApi
     {
-
-        private readonly Box _box;
-        private readonly BallsMovement _logicInstance;
+        private Box _box;
         private int _count;
+        public LogicApi LogicInstance;
 
-        public SimulationViewModel()
+        public ModelApi()
         {
-            _logicInstance = new BallsMovement();
+            LogicInstance = new LogicApi();
             _box = new Box();
         }
 
@@ -30,14 +30,13 @@ namespace ViewModel
 
         public void RunStartSimulation()
         {
-            _logicInstance.CreateBalls(Count, Radius, _box);
-            _logicInstance.StartSimulation(_box);
+            LogicInstance.CreateBalls(Count, Radius, _box);
+            LogicInstance.StartSimulation(_box);
         }
 
         public void RunStopSimulation()
         {
-            _logicInstance.StopSimulation(_box);
+            LogicInstance.StopSimulation(_box);
         }
     }
 }
-

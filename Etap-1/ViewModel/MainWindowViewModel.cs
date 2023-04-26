@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Data;
+using Model;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -6,15 +7,15 @@ namespace ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private readonly SimulationViewModel _simulationViewModel;
+        private readonly ModelApi _modelApi;
 
         public ICommand Start { get; set; }
         public ICommand Stop { get; set; }
 
         public MainWindowViewModel()
         {
-            _simulationViewModel = new SimulationViewModel();
-            
+            _modelApi = new ModelApi();
+
             Start = new RelayCommand(() => StartHandler());
             Stop = new RelayCommand(() => StopHandler());
         }
@@ -23,14 +24,14 @@ namespace ViewModel
         {
             get
             {
-                return _simulationViewModel.Count;
+                return _modelApi.Count;
             }
             set
             {
-                if (value.Equals(_simulationViewModel.Count))
+                if (value.Equals(_modelApi.Count))
                     return;
 
-                _simulationViewModel.Count = value;
+                _modelApi.Count = value;
 
                 RaisePropertyChanged("Count");
             }
@@ -40,18 +41,18 @@ namespace ViewModel
         {
             get
             {
-                return _simulationViewModel.Balls;
+                return _modelApi.Balls;
             }
         }
 
         private void StartHandler()
         {
-            _simulationViewModel.RunStartSimulation();
+            _modelApi.RunStartSimulation();
         }
 
         private void StopHandler()
         {
-            _simulationViewModel.RunStopSimulation();
+            _modelApi.RunStopSimulation();
         }
     }
 }

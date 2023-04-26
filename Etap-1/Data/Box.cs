@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
-namespace Model
+namespace Data
 {
     public class Box
     {

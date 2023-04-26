@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Model
+namespace Data
 {
     public class Ball
     {
@@ -16,7 +16,7 @@ namespace Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        internal Ball(double x, double y, int radius)
+        public Ball(double x, double y, int radius)
         {
             this.X = x;
             this.Y = y;
@@ -28,7 +28,7 @@ namespace Model
             this._isAlive = true;
         }
 
-        internal void MoveBall()
+        public void MoveBall()
         {
             double tmp_x, tmp_y;
 

@@ -9,7 +9,7 @@ namespace ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        #endregion INotifyPropertyChanged
+        #endregion INotifyPropertyChanged1
 
         protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {

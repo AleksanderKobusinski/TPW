@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Data;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Model
+namespace Logic
 {
-    public class BallsMovement
+    public class LogicApi
     {
         private readonly CancellationToken _cancelToken;
         private readonly List<Task> _tasksList = new List<Task>();
@@ -13,6 +14,11 @@ namespace Model
         public void CreateBalls(int count, int radius, Box box)
         {
             box.GenerateBalls(count, radius);
+        }
+
+        public Box CreateBox()
+        {
+            return new Box();
         }
 
         public void StartSimulation(Box box)
